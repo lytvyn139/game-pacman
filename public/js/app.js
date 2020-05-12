@@ -22,9 +22,10 @@ function worldGenerator(width, height){
       world[i] = [];
       for (let j = 0; j < height; j++) {
         world[i][j] = Math.floor(Math.random()*4);
-        world[i][1];
+        
       }
   }
+  console.table(world);
   return world;
 }
 
@@ -40,8 +41,20 @@ function drawWorld() {
   document.getElementById("world").innerHTML = output;
 }
 
-function keyPressLogic() {
+function scoreInfo() {
+  if (world[ninjaman.y][ninjaman.x] === 2){
+    score ++;
+  } else if (world[ninjaman.y][ninjaman.x] === 3) {
+    score += 5;
+ 
+ } world[ninjaman.y][ninjaman.x] = 0;
+ document.getElementById("score-result").innerHTML = `score: ${score}`;
+ console.log(score);
+ world[ninjaman.y][ninjaman.x] = 0;
+}
 
+
+function keyPressLogic() {
   document.onkeydown = function (event) {
     const leftMoveKey = event.keyCode === 37 || event.keyCode === 65;
     const rightMoveKey = event.keyCode === 39 || event.keyCode === 68;
@@ -49,7 +62,7 @@ function keyPressLogic() {
     const upMoveKey = event.keyCode === 38 || event.keyCode === 87;
 
     if (leftMoveKey) {
-      if (world[ninjaman.y][ninjaman.x - 1] !== 1) {
+      if (world[ninjaman.y][ninjaman.x - 1] !== 1) { 
         ninjaman.x --;
       }
     } else if (rightMoveKey) {
@@ -65,15 +78,14 @@ function keyPressLogic() {
         ninjaman.y ++;
       } 
     } 
-    
-    world[ninjaman.y][ninjaman.x] = 0;
-    
+
+    scoreInfo();
     drawNinjaMan();
     drawWorld();
   };
 }
 
-let world = worldGenerator(13, 13);
+let world = worldGenerator(20, 20);
 drawWorld();
 drawNinjaMan();
 keyPressLogic();
