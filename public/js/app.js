@@ -8,7 +8,7 @@ const worldDict = {
   0: "blank",
   1: "wall",
   2: "sushi",
-
+  3: "onigiri"
 };
 
 function drawNinjaMan() {
@@ -21,7 +21,7 @@ function worldGenerator(width, height){
   for (let i = 0 ; i < width; i++) {
       world[i] = [];
       for (let j = 0; j < height; j++) {
-        world[i][j] = Math.floor(Math.random()*3);
+        world[i][j] = Math.floor(Math.random()*4);
         world[i][1];
       }
   }
