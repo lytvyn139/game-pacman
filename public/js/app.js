@@ -1,31 +1,30 @@
 let score = 0;
 let ninjaman = {
-  x: 1,
-  y: 1,
+  horizontal: 10,
+  vertical: 10
 };
 
 const worldDict = {
   0: "blank",
   1: "wall",
   2: "sushi",
-  3: "onigiri"
+  3: "onigiri",
 };
 
 function drawNinjaMan() {
-  document.getElementById("ninjaman").style.top = ninjaman.y * 40 + "px";
-  document.getElementById("ninjaman").style.left = ninjaman.x * 40 + "px";
+  document.getElementById("ninjaman").style.top = ninjaman.vertical * 40 + "px";
+  document.getElementById("ninjaman").style.left = ninjaman.horizontal * 40 + "px";
 }
 
-function worldGenerator(width, height){
+function worldGenerator(width, height) {
   let world = [];
-  for (let i = 0 ; i < width; i++) {
-      world[i] = [];
-      for (let j = 0; j < height; j++) {
-        world[i][j] = Math.floor(Math.random()*4);
-        
-      }
+  for (let i = 0; i < width; i++) {
+    world[i] = [];
+    for (let j = 0; j < height; j++) {
+      world[i][j] = Math.floor(Math.random() * 4);
+      world[i].push("1");
+    }
   }
-  console.table(world);
   return world;
 }
 
@@ -33,8 +32,8 @@ function drawWorld() {
   let output = "";
   for (let row = 0; row < world.length; row++) {
     output += "<div class = 'row'>";
-    for (let x = 0; x < world[row].length; x++) {
-      output += "<div class = '" + worldDict[world[row][x]] + "'></div>";
+    for (let horizontal = 0; horizontal < world[row].length; horizontal++) {
+      output += "<div class = '" + worldDict[world[row][horizontal]] + "'></div>";
     }
     output += "</div>";
   }
@@ -42,17 +41,15 @@ function drawWorld() {
 }
 
 function scoreInfo() {
-  if (world[ninjaman.y][ninjaman.x] === 2){
-    score ++;
-  } else if (world[ninjaman.y][ninjaman.x] === 3) {
+  if (world[ninjaman.vertical][ninjaman.horizontal] === 2) {
+    score++;
+  } else if (world[ninjaman.vertical][ninjaman.horizontal] === 3) {
     score += 5;
- 
- } world[ninjaman.y][ninjaman.x] = 0;
- document.getElementById("score-result").innerHTML = `score: ${score}`;
- console.log(score);
- world[ninjaman.y][ninjaman.x] = 0;
+  }
+  world[ninjaman.vertical][ninjaman.horizontal] = 0;
+  document.getElementById("score-result").innerHTML = `score: ${score}`;
+  world[ninjaman.vertical][ninjaman.horizontal] = 0;
 }
-
 
 function keyPressLogic() {
   document.onkeydown = function (event) {
@@ -61,24 +58,24 @@ function keyPressLogic() {
     const downMoveKey = event.keyCode === 40 || event.keyCode === 83;
     const upMoveKey = event.keyCode === 38 || event.keyCode === 87;
 
+
     if (leftMoveKey) {
-      if (world[ninjaman.y][ninjaman.x - 1] !== 1) { 
-        ninjaman.x --;
+      if (world[ninjaman.vertical][ninjaman.horizontal - 1] !== 1) { 
+        ninjaman.horizontal --;
       }
     } else if (rightMoveKey) {
-      if (world[ninjaman.y][ninjaman.x + 1] !== 1) {
-        ninjaman.x ++;
+      if (world[ninjaman.vertical][ninjaman.horizontal + 1] !== 1) {
+        ninjaman.horizontal ++;
       }
     } else if (upMoveKey) {
-      if (world[ninjaman.y - 1][ninjaman.x] !== 1) {
-        ninjaman.y --;
+      if (world[ninjaman.vertical - 1][ninjaman.horizontal] !== 1) {
+        ninjaman.vertical --;
       }
     } else if (downMoveKey) {
-      if (world[ninjaman.y +1][ninjaman.x] !== 1) {
-        ninjaman.y ++;
+      if (world[ninjaman.vertical +1][ninjaman.horizontal] !== 1) {
+        ninjaman.vertical ++;
       } 
     } 
-
     scoreInfo();
     drawNinjaMan();
     drawWorld();
@@ -89,4 +86,3 @@ let world = worldGenerator(20, 20);
 drawWorld();
 drawNinjaMan();
 keyPressLogic();
-
