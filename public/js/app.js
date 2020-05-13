@@ -1,7 +1,7 @@
 let score = 0;
 let ninjaman = {
-  horizontal: 10,
-  vertical: 10
+  vertical: 1,
+  horizontal: 5
 };
 
 const worldDict = {
@@ -51,32 +51,49 @@ function scoreInfo() {
   world[ninjaman.vertical][ninjaman.horizontal] = 0;
 }
 
+function borderControl() {
+  console.log('bor')
+  console.log(`COL: ${ninjaman.horizontal}/ROW: ${ninjaman.vertical}`);
+  if (ninjaman.horizontal === 20) {
+    ninjaman.horizontal = 19;
+    drawNinjaMan();
+  } else if (ninjaman.horizontal === 0) {
+    ninjaman.horizontal = 19;
+    drawNinjaMan();
+  }
+}
+
 function keyPressLogic() {
   document.onkeydown = function (event) {
     const leftMoveKey = event.keyCode === 37 || event.keyCode === 65;
     const rightMoveKey = event.keyCode === 39 || event.keyCode === 68;
     const downMoveKey = event.keyCode === 40 || event.keyCode === 83;
     const upMoveKey = event.keyCode === 38 || event.keyCode === 87;
-
-
     if (leftMoveKey) {
       if (world[ninjaman.vertical][ninjaman.horizontal - 1] !== 1) { 
         ninjaman.horizontal --;
+        borderControl();
       }
     } else if (rightMoveKey) {
       if (world[ninjaman.vertical][ninjaman.horizontal + 1] !== 1) {
         ninjaman.horizontal ++;
+        borderControl();
       }
     } else if (upMoveKey) {
       if (world[ninjaman.vertical - 1][ninjaman.horizontal] !== 1) {
         ninjaman.vertical --;
+        borderControl();
       }
     } else if (downMoveKey) {
       if (world[ninjaman.vertical +1][ninjaman.horizontal] !== 1) {
         ninjaman.vertical ++;
+         borderControl();
       } 
+      
     } 
+    
     scoreInfo();
+ 
     drawNinjaMan();
     drawWorld();
   };
