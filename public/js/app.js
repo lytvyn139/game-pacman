@@ -1,4 +1,5 @@
 let score = 0;
+
 let ninjaman = {
   vertical: 1,
   horizontal: 5
@@ -52,15 +53,28 @@ function scoreInfo() {
 }
 
 function borderControl() {
-  console.log('bor')
   console.log(`COL: ${ninjaman.horizontal}/ROW: ${ninjaman.vertical}`);
-  if (ninjaman.horizontal === 20) {
-    ninjaman.horizontal = 19;
+  if (ninjaman.horizontal === 30) {
+    ninjaman.horizontal = 29;
     drawNinjaMan();
   } else if (ninjaman.horizontal === 0) {
-    ninjaman.horizontal = 19;
+    ninjaman.horizontal = 29;
     drawNinjaMan();
   }
+}
+
+function timerInfo(duration, display) {
+  let timeleft = 15;
+  let timeBar = setInterval(function () {
+    if (timeleft <= 0) {
+      clearInterval(timeBar);
+      alert(`GAME OVER. SCORE: ${score}`);
+    }
+    console.log(`seconds left: ${timeleft}`);
+    
+    document.getElementById("timeleft").innerHTML = `time left: ${timeleft} sec.`;
+    timeleft -= 1;
+  }, 1000);
 }
 
 function keyPressLogic() {
@@ -70,36 +84,34 @@ function keyPressLogic() {
     const downMoveKey = event.keyCode === 40 || event.keyCode === 83;
     const upMoveKey = event.keyCode === 38 || event.keyCode === 87;
     if (leftMoveKey) {
-      if (world[ninjaman.vertical][ninjaman.horizontal - 1] !== 1) { 
-        ninjaman.horizontal --;
+      if (world[ninjaman.vertical][ninjaman.horizontal - 1] !== 1) {
+        ninjaman.horizontal--;
         borderControl();
       }
     } else if (rightMoveKey) {
       if (world[ninjaman.vertical][ninjaman.horizontal + 1] !== 1) {
-        ninjaman.horizontal ++;
+        ninjaman.horizontal++;
         borderControl();
       }
     } else if (upMoveKey) {
       if (world[ninjaman.vertical - 1][ninjaman.horizontal] !== 1) {
-        ninjaman.vertical --;
+        ninjaman.vertical--;
         borderControl();
       }
     } else if (downMoveKey) {
-      if (world[ninjaman.vertical +1][ninjaman.horizontal] !== 1) {
-        ninjaman.vertical ++;
-         borderControl();
-      } 
-      
-    } 
-    
+      if (world[ninjaman.vertical + 1][ninjaman.horizontal] !== 1) {
+        ninjaman.vertical++;
+        borderControl();
+      }
+    }
     scoreInfo();
- 
     drawNinjaMan();
     drawWorld();
   };
 }
 
-let world = worldGenerator(20, 20);
+let world = worldGenerator(20, 30);
+timerInfo();
 drawWorld();
 drawNinjaMan();
 keyPressLogic();

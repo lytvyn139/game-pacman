@@ -2,9 +2,16 @@
   margin: 0;
   padding: 0;
 }
+
+body {
+  height: 100vh;
+  background-color: #000080;
+}
+
 .row {
   line-height: 0;
 }
+
 .wall {
   background-color: #000080;
   height: 40px;
@@ -47,6 +54,12 @@
   position: absolute;
 }
 
-.score {
+.score,
+.timeleft {
+  color: white;
   display: flex;
+}
+
+#progressBar {
+  background-color: red;
 }

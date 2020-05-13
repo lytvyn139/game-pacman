@@ -2,8 +2,8 @@
 Coding DOJO bootcamp project, 2d platformer game
 
 ## Getting Started
-Run in with live server, preferable resolution: 1920x1080
-Just move around and collect sushi 🍣 
+Run in with live server, preferable resolution: 1920x1080.
+You have 15 sec. to gather max count of sushi. Move around and good luck! 🍣 
 
 ## Controls
 * move ⬆️/W 
@@ -12,10 +12,11 @@ Just move around and collect sushi 🍣
 * move ⬅️/A 
 
 ## Features added
-* added 20x20 random field generator
+* added 20x30 random field generator
 * added onigiri
 * added score system
 * added left wall teleport
+* 15 seconds timer, and score in the end
 
 ## Author
 
