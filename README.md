@@ -2,7 +2,7 @@
 Coding DOJO bootcamp project, 2d platformer game
 
 ## Getting Started
-Run in with live server, preferable resolution: 1920x1080.
+Preferable resolution: 1920x1080.
 You have 15 sec. to gather max count of sushi. Move around and good luck! 🍣 
 
 ## Controls

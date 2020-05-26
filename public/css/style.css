@@ -5,7 +5,7 @@
 
 body {
   height: 100vh;
-  background-color: #000080;
+  background-color: #4c4cb3;
 }
 
 .row {
@@ -13,7 +13,7 @@ body {
 }
 
 .wall {
-  background-color: #000080;
+  background-color: #4c4cb3;
   height: 40px;
   width: 40px;
   display: inline-block;
@@ -21,7 +21,7 @@ body {
 
 .sushi {
   display: inline-block;
-  background-image: url(/public/img/sushi.png);
+  background-image: url(../../public/img/sushi.png);
   background-size: contain;
   background-color: black;
   height: 40px;
@@ -30,7 +30,7 @@ body {
 
 .onigiri {
   display: inline-block;
-  background-image: url(/public/img/onigiri.png);
+  background-image: url(../../public/img/onigiri.png);
   background-size: contain;
   background-color: black;
   height: 40px;
@@ -46,7 +46,7 @@ body {
 
 #ninjaman {
   display: inline-block;
-  background-image: url(/public/img/ninja.gif);
+  background-image: url(../../public/img/ninja.gif);
   background-size: contain;
   background-color: black;
   height: 40px;
